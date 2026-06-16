@@ -1,0 +1,10 @@
+# Скомпільовані бінарники
+matmul_seq
+matmul_omp
+matmul_mpi
+matmul_hybrid
+
+# Системні файли
+.DS_Store
+*.o
+*.a

@@ -1,0 +1,41 @@
+name: Build & Test
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Встановлення MPI та OpenMP
+      run: |
+        sudo apt-get update -qq
+        sudo apt-get install -y gcc libopenmpi-dev openmpi-bin
+
+    - name: Компіляція всіх версій
+      run: make all
+
+    - name: Тест — послідовна версія (n=256)
+      run: ./matmul_seq 256
+
+    - name: Тест — OpenMP 2 потоки (n=256)
+      run: ./matmul_omp 256 2
+
+    - name: Тест — MPI 2 процеси (n=256)
+      run: mpirun --allow-run-as-root -np 2 ./matmul_mpi 256
+
+    - name: Тест — Гібрид 2×2 (n=256)
+      run: mpirun --allow-run-as-root -np 2 ./matmul_hybrid 256 2
+
+    - name: Бенчмарк — OpenMP 4 потоки (n=512)
+      run: ./matmul_omp 512 4
+
+    - name: Бенчмарк — MPI 4 процеси (n=512)
+      run: mpirun --allow-run-as-root -np 4 ./matmul_mpi 512
