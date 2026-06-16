@@ -72,14 +72,15 @@ mpirun -np 4 ./matmul_mpi 1024    # MPI вручну
 ### Рядкова декомпозиція (MPI)
 
 ```
-Матриця A          MPI_Scatter        Rank 0  → обчислює рядки C[0..rows-1]
-──────────         ──────────►        Rank 1  → обчислює рядки C[rows..2rows-1]
-Rank 0 рядки                          Rank 2  → обчислює рядки C[2rows..3rows-1]
-Rank 1 рядки       MPI_Bcast(B)       Rank 3  → обчислює рядки C[3rows..n-1]
-Rank 2 рядки       ──────────►                          │
-Rank 3 рядки       B на всіх ranks             MPI_Gather(C)
-                                                        ↓
-                                               Повна матриця C
+MPI_Scatter(A) → Rank 0, 1, 2, 3 отримують свої рядки
+MPI_Bcast(B)   → всі ranks отримують матрицю B
+
+Rank 0 → C[0..rows-1]
+Rank 1 → C[rows..2rows-1]
+Rank 2 → C[2rows..3rows-1]
+Rank 3 → C[3rows..n-1]
+
+MPI_Gather(C)  → повна матриця C у Rank 0
 ```
 
 ### Fork-join модель (OpenMP)
