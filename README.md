@@ -88,14 +88,15 @@ Rank 3 рядки       B на всіх ranks             MPI_Gather(C)
 Головний потік
       │
       ▼  #pragma omp parallel for schedule(static)
-      ├── Thread 0 → рядки  0 .. n/t-1
-      ├── Thread 1 → рядки  n/t .. 2n/t-1
-      ├── Thread 2 → рядки  2n/t .. 3n/t-1
-      └── Thread t-1 → рядки  (t-1)n/t .. n-1
-                │
-          неявний бар'єр
-                │
-           Матриця C
+      |
+      1. Thread 0   → рядки  0 .. n/t-1
+      2. Thread 1   → рядки  n/t .. 2n/t-1
+      3. Thread 2   → рядки  2n/t .. 3n/t-1
+      4. Thread t-1 → рядки  (t-1)n/t .. n-1
+      |
+      неявний бар'єр
+      |
+ Матриця C
 ```
 
 ### NUMA-коректна ініціалізація (first-touch)
