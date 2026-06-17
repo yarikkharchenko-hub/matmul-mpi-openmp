@@ -1,6 +1,5 @@
 # Паралельне множення матриць: MPI vs OpenMP
 
-[![Build & Test](https://github.com/yarikkharchenko-hub/matmul-mpi-openmp/actions/workflows/build.yml/badge.svg)](https://github.com/yarikkharchenko-hub/matmul-mpi-openmp/actions)
 [![Language](https://img.shields.io/badge/Language-C99-blue.svg)](https://en.wikipedia.org/wiki/C99)
 [![MPI](https://img.shields.io/badge/MPI-4.0-orange.svg)](https://www.mpi-forum.org/)
 [![OpenMP](https://img.shields.io/badge/OpenMP-5.2-green.svg)](https://www.openmp.org/)
