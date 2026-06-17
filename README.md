@@ -11,9 +11,9 @@
 
 ---
 
-## ▶️ Запустити онлайн (GitHub Codespaces)
+##  Запуск онлайн (GitHub Codespaces)
 
-Натисниье кнопку вище:
+Натиснить кнопку вище:
 
 1 Відкрийте репозиторій на GitHub
 2 Натисніть зелену кнопку <> Code → вкладка Codespaces → Create codespace
